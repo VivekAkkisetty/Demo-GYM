@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ── */
+:root {
+  color-scheme: dark;
+  --volt: #b7f731;
+  --ink: #080909;
+}
+
+/* ── Reset & base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: #f5f7f2;
+  font-family: var(--font-inter), system-ui, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scroll at all times */
+  overflow-x: hidden;
+  min-width: 320px;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--volt);
+  color: #080909;
+}
+
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid var(--volt);
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Component utilities ── */
+@layer components {
+  .container-wide {
+    @apply mx-auto w-full max-w-[1380px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-volt;
+  }
+
+  /* Primary CTA — volt fill */
+  .button-primary {
+    @apply inline-flex items-center justify-center gap-2.5 bg-volt px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-ink transition-all duration-300 hover:bg-white active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-volt focus-visible:outline-offset-2;
+  }
+
+  /* Ghost CTA — bordered */
+  .button-ghost {
+    @apply inline-flex items-center justify-center gap-2.5 border border-white/25 px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:border-volt hover:text-volt active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-volt focus-visible:outline-offset-2;
+  }
+
+  /* Section heading utility */
+  .section-heading {
+    @apply font-display text-4xl font-bold uppercase leading-[0.9] tracking-[-0.055em] text-white sm:text-5xl;
+  }
+
+  /* Subtle horizontal rule */
+  .divider {
+    @apply h-px w-full bg-white/10;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(183, 247, 49, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(183, 247, 49, 0.45);
+}
